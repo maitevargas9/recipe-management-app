@@ -7,6 +7,7 @@ export enum Unit {
   Teaspoon = 'tsp',
   Tablespoon = 'tbsp',
   Cup = 'cup',
+  Bunch = 'bunch',
 }
 
 export enum Category {
