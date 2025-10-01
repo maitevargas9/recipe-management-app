@@ -1,0 +1,39 @@
+.recipe-list {
+  padding: 1rem;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      button {
+        border: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #f4f4f4;
+
+        &:hover {
+          background: #ddd;
+        }
+      }
+    }
+  }
+}

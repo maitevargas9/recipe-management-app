@@ -1,1 +1,19 @@
-<p>shopping-list works!</p>
+<div class="shopping-list">
+  <h2>Shopping list</h2>
+
+  <div *ngIf="(items$ | async) as items">
+    <div *ngIf="items.length > 0; else emptyList">
+      <ul>
+        <li *ngFor="let item of items">
+          {{ item.amount }} {{ item.unit }} {{ item.name }}
+          <button (click)="removeItem(item.name)">🗑️</button>
+        </li>
+      </ul>
+      <button class="clear-btn" (click)="clearList()">🧹 Clear list</button>
+    </div>
+
+    <ng-template #emptyList>
+      <p>The shopping list is empty.</p>
+    </ng-template>
+  </div>
+</div>

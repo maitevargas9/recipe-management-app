@@ -1,1 +1,31 @@
-<p>recipe-card works!</p>
+<div class="recipe-card">
+  <div class="header">
+    <h3>{{ recipe.name }}</h3>
+    <button class="favorite-btn" (click)="onToggleFavorite()">
+      {{ recipe.favorite ? '★' : '☆' }}
+    </button>
+  </div>
+
+  <p class="description">{{ recipe.description }}</p>
+
+  <div class="meta">
+    <span *ngIf="recipe.categories.length">Category: {{ recipe.categories.join(', ') }}</span>
+    <span *ngIf="recipe.dietTypes.length">Diet Type: {{ recipe.dietTypes.join(', ') }}</span>
+    <span>Portions: {{ recipe.basePortions }}</span>
+  </div>
+
+  <button (click)="toggleIngredients()">
+    {{ showIngredients ? 'Hide ingredients' : 'Display ingredients' }}
+  </button>
+
+  <ul *ngIf="showIngredients" class="ingredients-list">
+    <li *ngFor="let ing of recipe.ingredients">
+      {{ ing.amount }} {{ ing.unit }} {{ ing.name }}
+    </li>
+  </ul>
+
+  <div class="actions">
+    <button (click)="onEdit()">✏️ Edit</button>
+    <button (click)="onDelete()">🗑️ Delete</button>
+  </div>
+</div>
