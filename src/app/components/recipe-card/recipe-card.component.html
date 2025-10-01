@@ -1,31 +1,36 @@
 <div class="recipe-card">
-  <div class="header">
-    <h3>{{ recipe.name }}</h3>
-    <button class="favorite-btn" (click)="onToggleFavorite()">
-      {{ recipe.favorite ? '★' : '☆' }}
-    </button>
+  <h3>{{ recipe.name }}</h3>
+
+  <p><strong>Category:</strong> {{ recipe.categories.join(', ') }}</p>
+  <p><strong>Diet type:</strong> {{ recipe.dietTypes.join(', ') }}</p>
+  <p><strong>Meal Time:</strong> {{ recipe.mealTimes.join(', ') }}</p>
+
+  <p><strong>Season:</strong> {{ recipe.seasons?.join(', ') }}</p>
+  <p><strong>Holiday:</strong> {{ recipe.holidays?.join(', ') }}</p>
+  <p><strong>Occasion:</strong> {{ recipe.occasions?.join(', ') }}</p>
+
+  <p><strong>Continent:</strong> {{ recipe.continents }}</p>
+  <p><strong>Country:</strong> {{ recipe.countries }}</p>
+
+  <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
+
+  <div class="ingredients">
+    <h4>Ingredients</h4>
+    <ul>
+      <li *ngFor="let ing of recipe.ingredients">
+        {{ ing.amount }} {{ ing.unit }} {{ ing.name }}
+      </li>
+    </ul>
   </div>
 
-  <p class="description">{{ recipe.description }}</p>
-
-  <div class="meta">
-    <span *ngIf="recipe.categories.length">Category: {{ recipe.categories.join(', ') }}</span>
-    <span *ngIf="recipe.dietTypes.length">Diet Type: {{ recipe.dietTypes.join(', ') }}</span>
-    <span>Portions: {{ recipe.basePortions }}</span>
-  </div>
-
-  <button (click)="toggleIngredients()">
-    {{ showIngredients ? 'Hide ingredients' : 'Display ingredients' }}
-  </button>
-
-  <ul *ngIf="showIngredients" class="ingredients-list">
-    <li *ngFor="let ing of recipe.ingredients">
-      {{ ing.amount }} {{ ing.unit }} {{ ing.name }}
-    </li>
-  </ul>
+  <p><strong>Description:</strong> {{ recipe.description }}</p>
 
   <div class="actions">
-    <button (click)="onEdit()">✏️ Edit</button>
-    <button (click)="onDelete()">🗑️ Delete</button>
+    <button (click)="onToggleFavorite()">
+      {{ recipe.favorite ? '★ Favorite' : '☆ Favorite' }}
+    </button>
+    <button (click)="onAddToShoppingList()">➕ Shopping List</button>
+    <button (click)="onEdit()">✏️ Edit recipe</button>
+    <button (click)="onDelete()">🗑️ Delete recipe</button>
   </div>
 </div>

@@ -1,63 +1,98 @@
 .recipe-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h3 {
-      margin: 0;
-    }
-
-    .favorite-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: gold;
-    }
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .meta {
-    font-size: 0.9rem;
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  p {
+    margin: 0.3rem 0;
     color: #555;
-    margin: 0.5rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    font-size: 0.95rem;
+
+    strong {
+      color: #222;
+    }
   }
 
-  .ingredients-list {
-    margin: 0.5rem 0;
-    padding-left: 1.2rem;
+  .ingredients {
+    margin: 1rem 0;
+
+    h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #444;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+
+      li {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+    }
   }
 
   .actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 
     button {
-      padding: 0.3rem 0.6rem;
+      flex: 1;
+      min-width: 120px;
+      padding: 0.5rem 0.8rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-    }
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s ease;
 
-    button:first-child {
-      background: #4caf50;
-      color: #fff;
-    }
+      &:nth-child(1) {
+        background: #55efc4;
+        color: #fff;
+      }
 
-    button:last-child {
-      background: #f44336;
-      color: #fff;
+      &:nth-child(2) {
+        background: #ffeaa7;
+        color: #000;
+      }
+
+      &:nth-child(3) {
+        background: #74b9ff;
+        color: #fff;
+      }
+
+      &:nth-child(4) {
+        background: #ff7675;
+        color: #fff;
+      }
+
+      &:hover {
+        opacity: 0.85;
+      }
     }
   }
 }

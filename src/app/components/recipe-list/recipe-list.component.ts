@@ -11,7 +11,7 @@ import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RecipeCardComponent],
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss'],
 })
@@ -37,7 +37,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   deleteRecipe(recipe: Recipe) {
-    if (confirm(`Is the recipe  "${recipe.name}" really to be deleted?`)) {
+    if (confirm(`Is the recipe "${recipe.name}" really to be deleted?`)) {
       this.recipeService.delete(recipe.id);
     }
   }

@@ -1,36 +1,36 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../../models/recipe';
+import { Ingredient } from '../../models/ingredient';
 
 @Component({
   selector: 'app-recipe-card',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './recipe-card.component.html',
-  styleUrl: './recipe-card.component.scss',
+  styleUrls: ['./recipe-card.component.scss'],
 })
 export class RecipeCardComponent {
   @Input() recipe!: Recipe;
 
-  @Output() edit = new EventEmitter<string>();
-  @Output() delete = new EventEmitter<string>();
-  @Output() toggleFavorite = new EventEmitter<string>();
-
-  showIngredients = false;
-
-  toggleIngredients() {
-    this.showIngredients = !this.showIngredients;
-  }
+  @Output() edit = new EventEmitter<Recipe>();
+  @Output() delete = new EventEmitter<Recipe>();
+  @Output() toggleFavorite = new EventEmitter<Recipe>();
+  @Output() addToShoppingList = new EventEmitter<Ingredient[]>();
 
   onEdit() {
-    this.edit.emit(this.recipe.id);
+    this.edit.emit(this.recipe);
   }
 
   onDelete() {
-    this.delete.emit(this.recipe.id);
+    this.delete.emit(this.recipe);
   }
 
   onToggleFavorite() {
-    this.toggleFavorite.emit(this.recipe.id);
+    this.toggleFavorite.emit(this.recipe);
+  }
+
+  onAddToShoppingList() {
+    this.addToShoppingList.emit(this.recipe.ingredients);
   }
 }

@@ -4,42 +4,10 @@
   <div *ngIf="(recipes$ | async) as recipes">
     <div *ngIf="recipes.length > 0; else noRecipes">
       <div class="grid">
-        <div class="card" *ngFor="let recipe of recipes">
-          <h3>{{ recipe.name }}</h3>
-
-          <p><strong>Category:</strong> {{ recipe.categories.join(', ') }}</p>
-          <p><strong>Diet type:</strong> {{ recipe.dietTypes.join(', ') }}</p>
-          <p><strong>Meal Time:</strong> {{ recipe.mealTimes.join(', ') }}</p>
-
-          <p><strong>Season:</strong> {{ recipe.seasons?.join(', ') }}</p>
-          <p><strong>Holiday:</strong> {{ recipe.holidays?.join(', ') }}</p>
-          <p><strong>Occasion:</strong> {{ recipe.occasions?.join(', ') }}</p>
-
-          <p><strong>Continent:</strong> {{ recipe.continents }}</p>
-          <p><strong>Country:</strong> {{ recipe.countries }}</p>
-
-          <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
-
-          <p>
-            <strong>Ingredients:</strong>
-            <span *ngFor="let ing of recipe.ingredients; let last = last">
-              {{ ing.amount }} {{ ing.unit }} {{ ing.name }}<span *ngIf="!last">, </span>
-            </span>
-          </p>
-
-          <p><strong>Description:</strong> {{ recipe.description }}</p>
-
-          <div class="actions">
-            <button (click)="toggleFavorite(recipe)">
-              {{ recipe.favorite ? '★ Favorite' : '☆ Favorite' }}
-            </button>
-            <button (click)="addToShoppingList(recipe.ingredients)">
-              ➕ Shopping List
-            </button>
-            <button (click)="editRecipe(recipe)">✏️ Edit recipe</button>
-            <button (click)="deleteRecipe(recipe)">🗑️ Delete recipe</button>
-          </div>
-        </div>
+        <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe" (edit)="editRecipe($event)"
+          (delete)="deleteRecipe($event)" (toggleFavorite)="toggleFavorite($event)"
+          (addToShoppingList)="addToShoppingList($event)">
+        </app-recipe-card>
       </div>
     </div>
 
