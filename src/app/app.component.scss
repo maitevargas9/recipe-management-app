@@ -1,13 +1,57 @@
-.title-container {
+header {
   display: flex;
-  justify-content: center;
-  text-align: center;
-  margin-top: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+
+  h1 {
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .recipes-btn {
+      background: #00b894;
+      color: white;
+
+      &:hover {
+        background: #019875;
+      }
+    }
+
+    .create-btn {
+      background: #6c5ce7;
+      color: white;
+
+      &:hover {
+        background: #5a4bd1;
+      }
+    }
+
+    .shopping-btn {
+      background: #fdcb6e;
+      color: #2d3436;
+
+      &:hover {
+        background: #e1b463;
+      }
+    }
+  }
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0;
+main {
+  padding: 1rem;
 }

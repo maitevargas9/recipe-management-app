@@ -5,7 +5,7 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 
 export const routes: Routes = [
   { path: '', component: RecipeListComponent },
-  { path: 'new', component: RecipeFormComponent },
+  { path: 'create', component: RecipeFormComponent },
   { path: 'edit/:id', component: RecipeFormComponent },
   { path: 'shopping-list', component: ShoppingListComponent },
 ];
