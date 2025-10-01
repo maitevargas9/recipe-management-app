@@ -12,6 +12,7 @@ export enum Holiday {
   Thanksgiving = 'Thanksgiving',
   Christmas = 'Christmas',
   NewYearsEve = 'New Years Eve',
+  ThreeWiseMen = 'Three Wise Men',
   ValentinesDay = 'Valentines Day',
   MothersDay = 'Mothers Day',
   FathersDay = 'Fathers Day',
