@@ -18,6 +18,10 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
+  goToFavorites() {
+    this.router.navigate(['/favorites']);
+  }
+
   createRecipe() {
     this.router.navigate(['/create']);
   }

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 import { Recipe, Category, DietType, MealTime } from '../models/recipe';
 import { IngredientCategory } from '../models/ingredient';
 import { Unit } from '../models/unit';
 import { Country } from '../models/geo';
-import { v4 as uuidv4 } from 'uuid';
 
 const STORAGE_KEY = 'recipes_v1';
 
@@ -18,6 +19,12 @@ export class RecipeService {
 
   getAll(): Observable<Recipe[]> {
     return this.recipes$.asObservable();
+  }
+
+  getFavorites(): Observable<Recipe[]> {
+    return this.recipes$
+      .asObservable()
+      .pipe(map((recipes) => recipes.filter((r) => r.favorite)));
   }
 
   getById(id: string): Recipe | undefined {
