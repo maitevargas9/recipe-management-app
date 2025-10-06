@@ -1,0 +1,17 @@
+<div class="favorites-list">
+  <h2>Favorite Recipes</h2>
+
+  <div *ngIf="favorites$ | async as favorites">
+    <div *ngIf="favorites.length > 0; else noFavorites">
+      <div class="grid">
+        <app-recipe-card *ngFor="let recipe of favorites" [recipe]="recipe" (delete)="deleteRecipe($event)"
+          (toggleFavorite)="toggleFavorite($event)">
+        </app-recipe-card>
+      </div>
+    </div>
+
+    <ng-template #noFavorites>
+      <p>No favorite recipes yet. ⭐</p>
+    </ng-template>
+  </div>
+</div>
