@@ -33,4 +33,12 @@ export class RecipeCardComponent {
   onAddToShoppingList() {
     this.addToShoppingList.emit(this.recipe.ingredients);
   }
+
+  getIngredientsText(): string {
+    return (
+      this.recipe.ingredients
+        ?.map((ing) => `${ing.amount} ${ing.unit} ${ing.name}`)
+        .join(', ') || ''
+    );
+  }
 }

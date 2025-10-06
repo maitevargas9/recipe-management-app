@@ -14,14 +14,7 @@
 
   <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
 
-  <div class="ingredients">
-    <h4>Ingredients</h4>
-    <ul>
-      <li *ngFor="let ing of recipe.ingredients">
-        {{ ing.amount }} {{ ing.unit }} {{ ing.name }}
-      </li>
-    </ul>
-  </div>
+  <p><strong>Ingredients:</strong> {{ getIngredientsText() }}</p>
 
   <p><strong>Description:</strong> {{ recipe.description }}</p>
 
