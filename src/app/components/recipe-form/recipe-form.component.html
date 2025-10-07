@@ -7,16 +7,6 @@
       <input formControlName="name" />
     </label>
 
-    <label>
-      Description:
-      <textarea formControlName="description"></textarea>
-    </label>
-
-    <label>
-      Portions:
-      <input type="number" formControlName="basePortions" min="1" />
-    </label>
-
     <fieldset>
       <legend>Category</legend>
       <div *ngFor="let cat of categories">
@@ -51,6 +41,61 @@
     </fieldset>
 
     <fieldset>
+      <legend>Season</legend>
+      <div *ngFor="let s of seasons">
+        <label>
+          <input type="checkbox" [checked]="form.value.seasons.includes(s)"
+            (change)="onCheckboxChange($event, 'seasons', s)" />
+          {{ s }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Holiday</legend>
+      <div *ngFor="let h of holidays">
+        <label>
+          <input type="checkbox" [checked]="form.value.holidays.includes(h)"
+            (change)="onCheckboxChange($event, 'holidays', h)" />
+          {{ h }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Occasion</legend>
+      <div *ngFor="let o of occasions">
+        <label>
+          <input type="checkbox" [checked]="form.value.occasions.includes(o)"
+            (change)="onCheckboxChange($event, 'occasions', o)" />
+          {{ o }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Country</legend>
+      <div *ngFor="let cty of countries">
+        <label>
+          <input type="checkbox" [checked]="form.value.countries.includes(cty)"
+            (change)="onCheckboxChange($event, 'countries', cty)" />
+          {{ cty }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Continent</legend>
+      <div *ngFor="let cnt of continents">
+        <label>
+          <input type="checkbox" [checked]="form.value.continents.includes(cnt)"
+            (change)="onCheckboxChange($event, 'continents', cnt)" />
+          {{ cnt }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
       <legend>Ingredients</legend>
       <div formArrayName="ingredients">
         <div *ngFor="let ing of ingredients.controls; let i = index" [formGroupName]="i" class="ingredient-row">
@@ -64,6 +109,16 @@
       </div>
       <button type="button" (click)="addIngredient()">➕ Add ingredient</button>
     </fieldset>
+
+    <label>
+      Description:
+      <textarea formControlName="description"></textarea>
+    </label>
+
+    <label>
+      Portions:
+      <input type="number" formControlName="basePortions" min="1" />
+    </label>
 
     <button type="submit" [disabled]="form.invalid">
       {{ editMode ? 'Save' : 'Create' }}

@@ -10,6 +10,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe, Category, DietType, MealTime } from '../../models/recipe';
+import { Season, Holiday, Occasion } from '../../models/context';
+import { Country, Continent } from '../../models/geo';
 import { Ingredient } from '../../models/ingredient';
 import { Unit } from '../../models/unit';
 
@@ -28,6 +30,11 @@ export class RecipeFormComponent implements OnInit {
   categories = Object.values(Category);
   dietTypes = Object.values(DietType);
   mealTimes = Object.values(MealTime);
+  seasons = Object.values(Season);
+  holidays = Object.values(Holiday);
+  occasions = Object.values(Occasion);
+  countries = Object.values(Country);
+  continents = Object.values(Continent);
   units = Object.values(Unit);
 
   constructor(
@@ -48,6 +55,11 @@ export class RecipeFormComponent implements OnInit {
       categories: [[]],
       dietTypes: [[]],
       mealTimes: [[]],
+      seasons: [[]],
+      holidays: [[]],
+      occasions: [[]],
+      countries: [[]],
+      continents: [[]],
       ingredients: this.fb.array([]),
     });
 
@@ -88,6 +100,11 @@ export class RecipeFormComponent implements OnInit {
       categories: recipe.categories,
       dietTypes: recipe.dietTypes,
       mealTimes: recipe.mealTimes,
+      seasons: recipe.seasons,
+      holidays: recipe.holidays,
+      occasions: recipe.occasions,
+      countries: recipe.countries,
+      continents: recipe.continents,
     });
 
     recipe.ingredients.forEach((ing) => this.addIngredient(ing));
@@ -107,7 +124,9 @@ export class RecipeFormComponent implements OnInit {
   }
 
   save() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      return;
+    }
 
     const recipe: Recipe = {
       id: this.recipeId || '',

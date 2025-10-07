@@ -9,14 +9,14 @@
   <p><strong>Holiday:</strong> {{ recipe.holidays?.join(', ') }}</p>
   <p><strong>Occasion:</strong> {{ recipe.occasions?.join(', ') }}</p>
 
-  <p><strong>Continent:</strong> {{ recipe.continents }}</p>
-  <p><strong>Country:</strong> {{ recipe.countries }}</p>
-
-  <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
+  <p><strong>Country:</strong> {{ recipe.countries?.join(', ') }}</p>
+  <p><strong>Continent:</strong> {{ recipe.continents?.join(', ') }}</p>
 
   <p><strong>Ingredients:</strong> {{ getIngredientsText() }}</p>
 
   <p><strong>Description:</strong> {{ recipe.description }}</p>
+
+  <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
 
   <div class="actions">
     <button (click)="onToggleFavorite()">
