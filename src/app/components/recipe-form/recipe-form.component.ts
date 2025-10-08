@@ -11,8 +11,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe, Category, DietType, MealTime } from '../../models/recipe';
 import { Season, Holiday, Occasion } from '../../models/context';
-import { Country, Continent } from '../../models/geo';
-import { Ingredient } from '../../models/ingredient';
+import { Country, Continent, CountryToContinent } from '../../models/geo';
+import {
+  Ingredient,
+  IngredientCategory,
+  ingredientExamples,
+} from '../../models/ingredient';
 import { Unit } from '../../models/unit';
 
 @Component({
@@ -36,6 +40,9 @@ export class RecipeFormComponent implements OnInit {
   countries = Object.values(Country);
   continents = Object.values(Continent);
   units = Object.values(Unit);
+  filteredCountries = this.countries;
+  ingredientCategories = Object.values(IngredientCategory);
+  ingredientExamples = ingredientExamples;
 
   constructor(
     private fb: FormBuilder,
@@ -63,6 +70,29 @@ export class RecipeFormComponent implements OnInit {
       ingredients: this.fb.array([]),
     });
 
+    this.form
+      .get('countries')!
+      .valueChanges.subscribe((countries: Country[]) => {
+        if (countries && countries.length > 0) {
+          const continents = Array.from(
+            new Set(countries.map((c) => CountryToContinent[c]))
+          );
+          this.form.patchValue({ continents }, { emitEvent: false });
+        }
+      });
+
+    this.form
+      .get('continents')!
+      .valueChanges.subscribe((continents: Continent[]) => {
+        if (continents && continents.length > 0) {
+          this.filteredCountries = this.countries.filter((country) =>
+            continents.includes(CountryToContinent[country])
+          );
+        } else {
+          this.filteredCountries = this.countries;
+        }
+      });
+
     if (this.editMode && this.recipeId) {
       const recipe = this.recipeService.getById(this.recipeId);
       if (recipe) {
@@ -75,9 +105,14 @@ export class RecipeFormComponent implements OnInit {
     return this.form.get('ingredients') as FormArray;
   }
 
+  getIngredientsForCategory(category: IngredientCategory): string[] {
+    return this.ingredientExamples[category] || [];
+  }
+
   addIngredient(ingredient?: Ingredient) {
     this.ingredients.push(
       this.fb.group({
+        category: [ingredient?.category || '', Validators.required],
         name: [ingredient?.name || '', Validators.required],
         amount: [
           ingredient?.amount || 0,

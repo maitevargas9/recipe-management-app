@@ -74,20 +74,9 @@
     </fieldset>
 
     <fieldset>
-      <legend>Country</legend>
-      <div *ngFor="let cty of countries">
-        <label>
-          <input type="checkbox" [checked]="form.value.countries.includes(cty)"
-            (change)="onCheckboxChange($event, 'countries', cty)" />
-          {{ cty }}
-        </label>
-      </div>
-    </fieldset>
-
-    <fieldset>
       <legend>Continent</legend>
       <div *ngFor="let cnt of continents">
-        <label>
+        <label class="checkbox-inline">
           <input type="checkbox" [checked]="form.value.continents.includes(cnt)"
             (change)="onCheckboxChange($event, 'continents', cnt)" />
           {{ cnt }}
@@ -96,17 +85,44 @@
     </fieldset>
 
     <fieldset>
+      <legend>Country</legend>
+      <div *ngFor="let cty of filteredCountries">
+        <label class="checkbox-inline">
+          <input type="checkbox" [checked]="form.value.countries.includes(cty)"
+            (change)="onCheckboxChange($event, 'countries', cty)" />
+          {{ cty }}
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
       <legend>Ingredients</legend>
+
       <div formArrayName="ingredients">
         <div *ngFor="let ing of ingredients.controls; let i = index" [formGroupName]="i" class="ingredient-row">
-          <input formControlName="name" placeholder="Ingredient" />
-          <input type="number" formControlName="amount" min="0.1" step="0.1" />
+          <select formControlName="category">
+            <option value="" disabled selected>Category</option>
+            <option *ngFor="let cat of ingredientCategories" [value]="cat">
+              {{ cat }}
+            </option>
+          </select>
+
+          <select formControlName="name">
+            <option value="" disabled selected>Ingredient</option>
+            <option *ngFor="let name of getIngredientsForCategory(ing.get('category')?.value)" [value]="name">
+              {{ name }}
+            </option>
+          </select>
+
+          <input type="number" formControlName="amount" min="0.1" step="0.1" placeholder="Amount" />
           <select formControlName="unit">
             <option *ngFor="let u of units" [value]="u">{{ u }}</option>
           </select>
+
           <button type="button" (click)="removeIngredient(i)">🗑️</button>
         </div>
       </div>
+
       <button type="button" (click)="addIngredient()">➕ Add ingredient</button>
     </fieldset>
 
