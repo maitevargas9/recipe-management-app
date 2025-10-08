@@ -16,7 +16,13 @@
 
   <p><strong>Description:</strong> {{ recipe.description }}</p>
 
-  <p><strong>Portions:</strong> {{ recipe.basePortions }}</p>
+  <div class="portion-control">
+    <label>
+      <strong>Portions:</strong>
+      &nbsp;
+      <input type="number" [(ngModel)]="currentPortions" min="1" (change)="onPortionsChange()" />
+    </label>
+  </div>
 
   <div class="actions">
     <button (click)="onToggleFavorite()">
