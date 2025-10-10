@@ -1,6 +1,8 @@
 <div class="favorites-list">
   <h2>Favorite Recipes</h2>
 
+  <app-recipe-filter [form]="filterForm" (reset)="resetFilters()"></app-recipe-filter>
+
   <div *ngIf="favorites$ | async as favorites">
     <div *ngIf="favorites.length > 0; else noFavorites">
       <div class="grid">
