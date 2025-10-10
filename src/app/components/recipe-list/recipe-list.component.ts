@@ -10,11 +10,17 @@ import { Ingredient, IngredientCategory } from '../../models/ingredient';
 import { Season, Holiday, Occasion } from '../../models/context';
 import { Country, Continent } from '../../models/geo';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
+import { RecipeFilterComponent } from '../recipe-filter/recipe-filter.component';
 
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RecipeCardComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RecipeCardComponent,
+    RecipeFilterComponent,
+  ],
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.scss'],
 })
